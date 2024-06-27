@@ -1,4 +1,6 @@
 /*
+
+// using recursion
 #include<iostream>
 using namespace std;
 
@@ -27,8 +29,10 @@ int main(){
 
 */
 
+/*
 
 
+// using memoization method (top to bottom)
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -52,3 +56,32 @@ int main() {
 }
 // Time Complexity: O(N)
 // Space Complexity: O(N)+O(N) => {stack space + extra array space.}
+
+
+
+*/
+
+
+// using tabulation method (bottom to up)
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+    int n; cin >> n;
+
+    vector<int> dp(n, -1);
+
+    dp[0] = 0;
+    dp[1] = 1;
+
+    for(int i = 2; i <= n; i++) {
+        dp[i] = dp[i-1] + dp[i-2];
+    }
+
+    cout << "fib: " << dp[n] << endl;
+
+    return 0;
+}
+// Time Complexity: O(N)
+// Space Complexity: O(N)
