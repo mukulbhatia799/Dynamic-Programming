@@ -61,6 +61,8 @@ int main() {
 
 */
 
+/*
+
 
 // using tabulation method (bottom to up)
 #include<iostream>
@@ -85,3 +87,31 @@ int main() {
 }
 // Time Complexity: O(N)
 // Space Complexity: O(N)
+
+*/
+
+
+
+
+/*
+
+// optimal approach: no stack space + no extra array required.
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n; cin >> n;
+
+    int prev = 1, prev2 = 0;
+    for(int i = 2; i <= n; i++) {
+        int sum = prev + prev2;
+        prev2 = prev;
+        prev = sum;
+    }
+
+    cout << "fib: " << prev << endl;
+
+    return 0;
+}
+
+*/
