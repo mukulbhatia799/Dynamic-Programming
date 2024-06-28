@@ -20,6 +20,10 @@ int frogJump(int n, vector<int> &heights)
     return findAns(n-1, heights);
 }
 
+// T.C: O(2^N)
+// S.C: O(N) {aux stack space}
+
+
 */
 
 
@@ -47,6 +51,10 @@ int frogJump(int n, vector<int> &heights)
     dp[0] = 0;
     return findAns(n-1, heights, dp);
 }
+
+// T.C: O(N)
+// S.C: O(N) + O(N) {aux stack space + aux array space}
+
 
  */
 
@@ -82,6 +90,11 @@ int frogJump(int n, vector<int> &heights)
     return dp[n-1];
 }
 
+
+// T.C: O(N)
+// S.C: O(N) {aux array space}
+
+
 */
 
 
@@ -116,7 +129,11 @@ int frogJump(int n, vector<int> &heights)
     }
 
     return prev1;
-    
 }
+
+
+// T.C: O(N)
+// S.C: O(1)
+
 
 */

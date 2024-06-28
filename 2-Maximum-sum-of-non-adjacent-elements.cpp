@@ -17,6 +17,10 @@ int maximumNonAdjacentSum(vector<int> &nums){
     return findAnsRE(nums.size()-1, nums);   // using recursion
 }
 
+
+// T.C: O(2^N)
+// S.C: O(N) {aux stack space}
+
 */
 
 /*
@@ -41,6 +45,9 @@ int maximumNonAdjacentSum(vector<int> &nums){
     return findAnsRE(nums.size()-1, nums, dp);   // using memoization
 }
 
+// T.C: O(N)
+// S.C: O(N) + O(N) {aux stack space + aux array space}
+
 */
 
 /*
@@ -53,8 +60,9 @@ int maximumNonAdjacentSum(vector<int> &nums){
     // done using tabulation.
     vector<int> dp(nums.size(), -1);
     dp[0] = nums[0];
-    // using tabulation
-    int whenAt0 = nums[0], lessThan0 = 0;
+
+    int whenAt0 = nums[0], lessThan0 = 0;       // not used here, but just want to tell that when changing from memo -> tabulation, we just go from bottom to top means from the base cases to the nth value.
+    
     for(int i = 1; i < nums.size(); i++) {
         int pick = nums[i];
         if(i > 1) pick += dp[i-2];
@@ -63,6 +71,9 @@ int maximumNonAdjacentSum(vector<int> &nums){
     }
     return dp[nums.size()-1];
 }
+
+// T.C: O(N)
+// S.C: O(N) {aux array space}
 
 */
 
@@ -84,5 +95,8 @@ int maximumNonAdjacentSum(vector<int> &nums){
     }
     return prev1;
 }
+
+// T.C: O(N)
+// S.C: O(1)
 
 */
