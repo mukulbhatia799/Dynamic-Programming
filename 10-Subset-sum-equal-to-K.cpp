@@ -51,7 +51,33 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 
 
 /*
-    // using tabulation: will solve later...
+    // using tabulation
+#include <bits/stdc++.h>
+
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // using tabulation
+    vector<vector<bool>> dp(n, vector<bool>(k+1, 0));    // don't need vector of int now, as in memo we have to check if dp[n][target] != -1 means it has changed to T/F or not.
+                                                        // But in tabulation, we are filling the dp completely. So, take bool.
+    for(int i = 0; i < n; i++) dp[i][0] = true;
+
+    dp[0][arr[0]] = true;
+
+    for(int i = 1; i < n; i++) {
+        for(int j = 1; j <= k; j++) {
+            int notTake = dp[i-1][j];
+            int take = false;
+            if(arr[i] <= j) take = dp[i-1][j-arr[i]];
+            dp[i][j] = notTake | take;
+        }
+    }
+
+    return dp[n-1][k];
+
+
+
+
+    
+}
 
 
 */
