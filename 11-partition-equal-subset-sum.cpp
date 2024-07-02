@@ -63,13 +63,69 @@ public:
 */
 
 /*
+    // using tabulation
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        // using tabulation
+        int n = nums.size();
+        int sum = 0;
+        for(auto ele: nums) sum += ele;
+        if(sum & 1) return false;
+        sum /= 2;
+        vector<vector<bool>> dp(n, vector<bool>(sum+1, 0));
+        
+        for(int i = 0; i < n; i++) dp[i][0] = true;
 
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j <= sum; j++) {
+                int notTake = dp[i-1][j];
+                int take = false;
+                if(nums[i] <= j) take = dp[i-1][j-nums[i]];
+                dp[i][j] = (take || notTake);
+            }
+        }
+
+        return dp[n-1][sum];
+
+    }
+};
 
 
 */
 
 /*
+    // using space optimization
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        // using spacae optimization
+        int n = nums.size();
+        int sum = 0;
+        for(auto ele: nums) sum += ele;
+        if(sum & 1) return false;
+        sum /= 2;
+        
+        vector<bool> prev(sum+1, 0);
+        prev[0] = true;
+        if(nums[0] <= sum) prev[nums[0]] = true;
 
+        for(int i = 1; i < n; i++) {
+            vector<bool> curr(sum+1, 0);
+            curr[0] = true;
+            for(int j = 1; j <= sum; j++) {
+                int notTake = prev[j];
+                int take = false;
+                if(nums[i] <= j) take = prev[j-nums[i]];
+                curr[j] = (take || notTake);
+            }
+            prev = curr;
+        }
+
+        return prev[sum];
+
+    }
+};
 
 
 */
