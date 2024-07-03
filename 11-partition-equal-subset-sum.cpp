@@ -4,10 +4,10 @@ class Solution {
 public:
     bool findAns(int n, int target, vector<int>& nums) {
         if(n == 0) return (target == nums[0]);
-        
+
         bool take = false;
         if(nums[n] <= target) take = findAns(n-1, target-nums[n], nums);
-        
+
         bool notTake = findAns(n-1, target, nums);
 
         return take | notTake;
@@ -34,12 +34,12 @@ class Solution {
 public:
     bool findAns(int n, int target, vector<int>& nums, vector<vector<int>> &dp) {
         if(n == 0) return (target == nums[0]);
-        
+
         if(dp[n][target] != -1) return dp[n][target];
 
         bool take = false;
         if(nums[n] <= target) take = findAns(n-1, target-nums[n], nums, dp);
-        
+
         bool notTake = findAns(n-1, target, nums, dp);
 
         return dp[n][target] = take | notTake;
@@ -74,7 +74,7 @@ public:
         if(sum & 1) return false;
         sum /= 2;
         vector<vector<bool>> dp(n, vector<bool>(sum+1, 0));
-        
+
         for(int i = 0; i < n; i++) dp[i][0] = true;
 
         for(int i = 1; i < n; i++) {
@@ -105,7 +105,7 @@ public:
         for(auto ele: nums) sum += ele;
         if(sum & 1) return false;
         sum /= 2;
-        
+
         vector<bool> prev(sum+1, 0);
         prev[0] = true;
         if(nums[0] <= sum) prev[nums[0]] = true;
